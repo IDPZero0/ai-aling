@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrapper</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .fullscreen-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fullscreen-iframe">
+        <iframe id="dynamic-iframe" frameborder="0" allowfullscreen crossorigin allow="cross-origin-isolated"></iframe>
+    </div>
+
+    <script>
+		function onDOMContentLoaded() {
+			document.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
+			
+			var currentUrl = window.location.href;
+
+            var regex = /https:\/\/([\w]+)-([\w-]+)\.static\.hf\.space/;
+            var match = currentUrl.match(regex);
+
+            if (match) {
+                var repo = match[1];
+                var space = match[2];
+            	var targetUrl = "https://huggingface.cu.bzh/?script=huggingface.co/spaces/" + repo + "/" + space
+            	console.log("targetUrl:", targetUrl)
+            	document.getElementById("dynamic-iframe").src = targetUrl;
+            } else {
+                console.error("URL pattern does not match.");
+            }
+		}
+		document.addEventListener("DOMContentLoaded", onDOMContentLoaded);
+
+    </script>
+</body>
+
+</html>

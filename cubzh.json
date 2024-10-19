@@ -1,0 +1,15 @@
+{
+	"script": "cubzh.lua",
+	"env": {
+		"USER_AUTH": "disabled",
+		"CUBZH_MENU": "disabled",
+		"CHAT_CONSOLE_DISPLAY": "always"
+	},
+	"contributors": [
+		{ "caillef": 0.4 },
+		{ "tantris": 0.4 },
+		{ "aduermael": 0.2 }
+	],
+	"map": "map.b64",
+	"bundle": []
+}
